@@ -94,7 +94,7 @@ class TestDeleteGithubRepository:
 
         with allure.step('Verifies error message contains "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == "Not Found", f'Expected "Not Found" message, but got {error_data.get('message')}'
+            assert error_data.get('message') == "Not Found", f"Expected 'Not Found' message, but got {error_data.get('message')}"
 
     @allure.story('Delete a repository')
     @allure.title('Error: delete repository with invalid token')
