@@ -19,7 +19,7 @@ class TestCreateGithubRepository:
             assert response.status_code == 201, f'Expected 201, but got {response.status_coed}. Response: {response.text}'
         with allure.step('Check repository name and default visibility'):
             data = response.json()
-            assert data['name'] == repository_name, f'Expected name {repository_name}, but got {data['name']}'
+            assert data['name'] == repository_name, f"Expected name {repository_name}, but got {data['name']}"
             assert data['private'] is False, 'New repository should be public by default'
 
         created_repositories_list.append(repository_name)
@@ -43,8 +43,8 @@ class TestCreateGithubRepository:
             assert response.status_code == 201, f'Expected 201, but got {response.status_code}. Response: {response.text}'
         with allure.step('Verify data of the private test repository'):
             data = response.json()
-            assert data['name'] == repository_name, f'Expected {repository_name}, but got {data['name']}'
-            assert data['description'] == description, f'Expected {description}, but got {data['description']}'
+            assert data['name'] == repository_name, f"Expected {repository_name}, but got {data['name']}"
+            assert data['description'] == description, f"Expected {description}, but got {data['description']}"
             assert data['private'] is True, 'Repository should be private'
 
         created_repositories_list.append(repository_name)

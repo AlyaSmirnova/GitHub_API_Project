@@ -41,7 +41,7 @@ class TestGetGithubRepository:
             response = api.get_repo(repository_name)
         with allure.step('Verify repository data consistency'):
             data = response.json()
-            assert data['name'] == repository_name, f'Name mismatch! Expected {repository_name}, but got {data['name']}'
+            assert data['name'] == repository_name, f"Name mismatch! Expected {repository_name}, but got {data['name']}"
             assert data['owner']['login'] == api.github_username, 'Owner login mismatch'
             assert data['description'] == description, 'Description mismatch'
             assert data['private'] is False, 'Repository should be public by default'

@@ -32,10 +32,10 @@ class TestGetGithubIssue:
 
         with allure.step('Verify issue data consistency'):
             data = response.json()
-            assert data['number'] == issue_number, f'Expected {issue_number}, but got {data['number']}'
-            assert data['title'] == issue_title, f'Expected {issue_title}, but got {data['title']}'
-            assert data['body'] == issue_body, f'Expected {issue_body}, but got {data['body']}'
-            assert data['state'] == 'open', f'Expected state "open", but got {data['state']}'
+            assert data['number'] == issue_number, f"Expected {issue_number}, but got {data['number']}"
+            assert data['title'] == issue_title, f"Expected {issue_title}, but got {data['title']}"
+            assert data['body'] == issue_body, f"Expected {issue_body}, but got {data['body']}"
+            assert data['state'] == 'open', f"Expected state 'open', but got {data['state']}"
 
     @allure.story('Get an issue')
     @allure.title('Verify author association field')
@@ -83,7 +83,7 @@ class TestGetGithubIssue:
 
         with allure.step('Verify error message is "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == 'Not Found', f'Expected "Not Found", but got {error_data.get('message')}'
+            assert error_data.get('message') == 'Not Found', f"Expected 'Not Found', but got {error_data.get('message')}"
 
     @allure.story('Get an issue')
     @allure.title('Error: get issue number from non-existent repository')
@@ -101,7 +101,7 @@ class TestGetGithubIssue:
 
         with allure.step('Verify error message is "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == 'Not Found', f'Expected "Not Found", but got {error_data.get('message')}'
+            assert error_data.get('message') == 'Not Found', f"Expected 'Not Found', but got {error_data.get('message')}"
 
     @allure.story('Get an issue')
     @allure.title('Error: access issue in private repository without authorization')

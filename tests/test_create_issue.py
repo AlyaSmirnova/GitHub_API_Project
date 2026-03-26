@@ -23,11 +23,11 @@ class TestCreateGitHubIssue:
             response = issue_api.create_issue(repository_name=repository_name, title=issue_title)
 
         with allure.step('Verify response status code is 201'):
-            assert response.status_code == 201, f'Expected 201, but got {response.status_code}. Response: {response.text}'
+            assert response.status_code == 201, f"Expected 201, but got {response.status_code}. Response: {response.text}"
 
         with allure.step('Verify issue title and status'):
             data = response.json()
-            assert data['title'] == issue_title, f'Expected title {issue_title}, but got {data['title']}'
+            assert data['title'] == issue_title, f"Expected title {issue_title}, but got {data['title']}"
             assert data['state'] == 'open', 'New issue should have "open" state by default'
 
         with allure.step('Verify issue has a unique number'):
@@ -59,12 +59,12 @@ class TestCreateGitHubIssue:
             )
 
         with allure.step('Verify response status code is 201'):
-            assert response.status_code == 201, f'Expected 201, but got {response.status_code}. Response: {response.text}'
+            assert response.status_code == 201, f"Expected 201, but got {response.status_code}. Response: {response.text}"
 
         with allure.step('Verify all data in response'):
             data = response.json()
-            assert data['title'] == issue_title, f'Expected title {issue_title}, but got {data['title']}'
-            assert data['body'] == issue_body, f'Expected body {issue_body}, but got {data['body']}'
+            assert data['title'] == issue_title, f"Expected title {issue_title}, but got {data['title']}"
+            assert data['body'] == issue_body, f"Expected body {issue_body}, but got {data['body']}"
             actual_labels = [label['name'] for label in data['labels']]
             for label in issue_labels:
                 assert label in actual_labels, f'Label "{label}" missing in response'
@@ -163,7 +163,7 @@ class TestCreateGitHubIssue:
 
         with allure.step('Verify error message is "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == 'Not Found', f'Expected "Not Found" message, but got {error_data.get('message')}'
+            assert error_data.get('message') == 'Not Found', f"Expected 'Not Found' message, but got {error_data.get('message')}"
 
     @allure.story('Create an issue')
     @allure.title('Error: create an issue without authorization')

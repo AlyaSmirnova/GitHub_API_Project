@@ -38,7 +38,7 @@ class TestUpdateGithubIssue:
 
         with allure.step('Verify that issue state now is "closed"'):
             data = response.json()
-            assert data['state'] == 'closed', f'Expected state "closed", but got {data['state']}'
+            assert data['state'] == 'closed', f"Expected state 'closed', but got {data['state']}"
             assert data['number'] == issue_number, 'Issue number should remain the same'
 
     @allure.story('Update an issue')
@@ -73,8 +73,8 @@ class TestUpdateGithubIssue:
 
         with allure.step('Verify updated fields "title" and "body"'):
             data = response.json()
-            assert data['title'] == new_title, f'Expected {new_title}, but got {data['title']}'
-            assert data['body'] == new_body, f'Expected {new_body}, but got {data['body']}'
+            assert data['title'] == new_title, f"Expected {new_title}, but got {data['title']}"
+            assert data['body'] == new_body, f"Expected {new_body}, but got {data['body']}"
 
     @allure.story('Update an issue')
     @allure.title('Replace issue labels successfully')
@@ -132,7 +132,7 @@ class TestUpdateGithubIssue:
 
         with allure.step('Verify response status code is 200 and state is "open"'):
             assert response.status_code == 200, f'Expected 200, but got {response.status_code}'
-            assert response.json()['state'] == 'open', f'Expected state "open", but got {response.json()['state']}'
+            assert response.json()['state'] == 'open', f"Expected state 'open', but got {response.json()['state']}"
 
     @allure.story('Update an issue')
     @allure.title('Error: update non-existent issue number')
@@ -155,7 +155,7 @@ class TestUpdateGithubIssue:
 
         with allure.step('Verify error message is "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == 'Not Found', f'Expected error message "Not Found", but got {error_data.get('message')}'
+            assert error_data.get('message') == 'Not Found', f"Expected error message 'Not Found', but got {error_data.get('message')}"
 
     @allure.story('Update an issue')
     @allure.title('Check: update issue with invalid state value')
@@ -182,7 +182,7 @@ class TestUpdateGithubIssue:
 
         with allure.step('Verify that state remains "open" (invalid value ignored)'):
             data = response.json()
-            assert data['state'] == 'open', f'State should still be "open", but got {data['state']}'
+            assert data['state'] == 'open', f"State should still be 'open', but got {data['state']}"
 
     @allure.story('Update an issue')
     @allure.title('Error: update issue without authorization')

@@ -30,7 +30,7 @@ class TestUpdateGithubRepository:
         with allure.step(f'Verify that description was updated and name remained the same'):
             data = response.json()
             assert data['name'] == new_repository_name, f'Repository name should not have changed'
-            assert data['description'] == new_repository_description, f'Description mismatch. Expected {new_repository_description}, but got {data['description']}'
+            assert data['description'] == new_repository_description, f"Description mismatch. Expected {new_repository_description}, but got {data['description']}"
 
         created_repositories_list.append(new_repository_name)
 
@@ -58,7 +58,7 @@ class TestUpdateGithubRepository:
 
         with allure.step('Verify that name was updated'):
             data = response.json()
-            assert data['name'] == new_repository_name, f'Name mismatch. Expected {new_repository_name}, but got {data['name']}'
+            assert data['name'] == new_repository_name, f"Name mismatch. Expected {new_repository_name}, but got {data['name']}"
 
         with allure.step('Verify repository is accessible via the new name'):
             get_response = api.get_repo(new_repository_name)
@@ -90,7 +90,7 @@ class TestUpdateGithubRepository:
 
         with allure.step('Verify that visibility was changed from False to True'):
             data = response.json()
-            assert data['private'] == True, f'Expected private: True, but got {data['private']}'
+            assert data['private'] == True, f"Expected private: True, but got {data['private']}"
 
         # Small delay to ensure Access Control Propagation is completed on GitHub side
         # before teardown fixture attempts to delete the new private repository
@@ -116,8 +116,8 @@ class TestUpdateGithubRepository:
 
         with allure.step('Verify that features are successfully disabled'):
             data = response.json()
-            assert data['has_issues'] is False, f'Expected has_issues: False, but got {data['has_issues']}'
-            assert data['has_wiki'] is False, f'Expected has_wiki: False, but got {data['has_wiki']}'
+            assert data['has_issues'] is False, f"Expected has_issues: False, but got {data['has_issues']}"
+            assert data['has_wiki'] is False, f"Expected has_wiki: False, but got {data['has_wiki']}"
 
     @allure.story('Update a repository')
     @allure.title('Error: rename repository to an already existing name')
@@ -182,7 +182,7 @@ class TestUpdateGithubRepository:
 
         with allure.step('Verify error message is "Not Found"'):
             error_data = response.json()
-            assert error_data.get('message') == 'Not Found', f'Expected "Not Found" message, but got {error_data.get('message')}'
+            assert error_data.get('message') == 'Not Found', f"Expected 'Not Found' message, but got {error_data.get('message')}"
 
     @allure.story('Update a repository')
     @allure.title('Error: update repository with invalid token')
@@ -200,7 +200,7 @@ class TestUpdateGithubRepository:
 
         with allure.step('Try to update description with invalid token'):
             url = f'{api.base_url}/repos/{api.github_username}/{repository_name}'
-            response = requests.patch(url, headers=invalid_headers, json={'description': 'some desciption for this repository'})
+            response = requests.patch(url, headers=invalid_headers, json={'description': 'some description for this repository'})
 
         with allure.step('Verify response status code is 401'):
             assert response.status_code == 401, f'Expected 401, but got {response.status_code}. Response: {response.text}'
